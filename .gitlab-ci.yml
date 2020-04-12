@@ -61,6 +61,14 @@ build_vehicle:
         changes:
             - vehicle/**/*
 
+build_gateway:
+    <<: *build_template
+    variables:
+        PATH_TO_APP: gateway     
+    only:
+        changes:
+            - gateway/**/*
+
 build_identity:
     stage: build
     script:
@@ -119,3 +127,9 @@ deploy_vehicle:
     only:
         changes:
             - vehicle/**/*
+
+deploy_gateway:
+    <<: *deploy_template
+    only:
+        changes:
+            - gateway/**/*
