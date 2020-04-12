@@ -1,0 +1,70 @@
+version: '3.1'
+
+services:
+
+  zookeeper:
+    image: gitlab.svagworks.me:5050/root/demo_3:zookeeper
+    ports:
+      - 2181:2181
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    
+  kafka:
+    image: gitlab.svagworks.me:5050/root/demo_3:kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092    
+    env_file:
+      - ./env/kafka.env
+
+  messaging:
+    image: gitlab.svagworks.me:5050/root/demo_3:messaging
+    depends_on:
+      - kafka
+    ports:
+      - 8084:8080
+    env_file:
+      - ./env/messaging.env  
+      
+  identity:
+    image: gitlab.svagworks.me:5050/root/demo_3:identity
+    ports:
+      - 8080:8080
+    env_file:
+      - ./env/identity.env
+      
+  payment:
+    image: gitlab.svagworks.me:5050/root/demo_3:payment
+    ports:
+      - 8083:8080
+    env_file:
+      - ./env/payment.env
+      
+  trip:
+    image: gitlab.svagworks.me:5050/root/demo_3:trip
+    depends_on:
+      - kafka
+    ports:
+      - 8082:8080
+    env_file:
+      - ./env/trip.env 
+
+  vehicle:
+    image: gitlab.svagworks.me:5050/root/demo_3:vehicle
+    depends_on:
+      - kafka
+    ports:
+      - 8081:8080
+    env_file:
+      - ./env/vehicle.env
+
+  simulation:
+    image: gitlab.svagworks.me:5050/root/demo_3:simulation
+    depends_on:
+      - kafka
+      - vehicle
+    ports:
+      - 8088:8080
+    env_file:
+      - ./env/simulator.env          
