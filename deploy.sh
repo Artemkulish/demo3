@@ -8,7 +8,7 @@ docker run --rm \
     docker/compose:1.24.0 $1 $2 $3 $4
 }
 
-services=("zookeeper" "kafka" "identity" "vehicle" "trip" "payment" "messaging" "simulation")
+services=("zookeeper" "kafka" "identity" "vehicle" "trip" "payment" "messaging" "simulation" "eureka" "gateway")
 
 for container in ${services[*]}
 do 
