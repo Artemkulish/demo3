@@ -1,6 +1,6 @@
 variables:
     PATH_TO_JAR:    /target/*.jar
-    IP:             10.128.0.28
+    IP:             10.128.0.29
     
 stages:
     - build
