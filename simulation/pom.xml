@@ -93,7 +93,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>kick-scooter-simulator</finalName>
+		<finalName>kick-scooter-simulation</finalName>
 	</build>
 
 </project>
