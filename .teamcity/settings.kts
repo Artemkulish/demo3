@@ -23,11 +23,6 @@ object Build : BuildType({
             mavenVersion = defaultProvidedVersion()
         }
     }
-
-    triggers {
-        vcs {
-        }
-    }
 })
 
 object Demo4Vcs : GitVcsRoot({
