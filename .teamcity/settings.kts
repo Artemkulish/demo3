@@ -31,10 +31,10 @@ object Trip : BuildType({
     }
 })
 
-object Trip : BuildType({
-    name = "Trip"
+object Gateway : BuildType({
+    name = "Gateway"
 
-    vcs {
+    vcs {g
         root(DslContext.settingsRoot)
     }
 
