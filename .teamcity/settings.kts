@@ -11,7 +11,7 @@ project {
 
 object Trip : BuildType({
     name = "Trip"
-    artifactRules = "target/**jar"
+    artifactRules = "target/*jar"
 
     vcs {
         root(DslContext.settingsRoot)
