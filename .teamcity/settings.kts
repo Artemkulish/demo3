@@ -1,32 +1,53 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 
 version = "2019.2"
 
 project {
-    vcsRoot(Test)
-    buildType(Build)
+    buildType(Trip)
+    buildType(Gateway)
 }
 
-object Build : BuildType({
-    name = "Build"
-    artifactRules = "target/*jar"
+object Trip : BuildType({
+    name = "Trip"
+    artifactRules = "target/**jar"
 
     vcs {
-        root(Test)
+        root(DslContext.settingsRoot)
     }
+
     steps {
         maven {
             goals = "clean package"
+            pomLocation = "trip/pom.xml"
+            runnerArgs = "-Dmaven.test.failure.ignore=true"
         }
     }
+
     triggers {
         vcs {
-            groupCheckinsByCommitter = true
         }
     }
 })
 
-object Test : GitVcsRoot({
-    name = "Test"
-    url = "https://github.com/Artemkulish/Demo_4"
+object Trip : BuildType({
+    name = "Trip"
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+
+    steps {
+        maven {
+            goals = "clean package"
+            pomLocation = "gateway/pom.xml"
+            runnerArgs = "-Dmaven.test.failure.ignore=true"
+        }
+    }
+
+    triggers {
+        vcs {
+        }
+    }
 })
