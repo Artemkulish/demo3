@@ -30,5 +30,5 @@ object Build : BuildType({
 
 object Trip : GitVcsRoot({
     name = "Trip"
-    url = "https://github.com/Artemkulish/Demo_4/tree/master/trip"
+    url = "https://github.com/Artemkulish/Demo_4"
 })
