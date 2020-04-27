@@ -3,16 +3,16 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.*
 version = "2019.2"
 
 project {
-    vcsRoot(Trip)
+    vcsRoot(Test)
     buildType(Build)
 }
 
 object Build : BuildType({
-    name = "Test"
+    name = "Build"
     artifactRules = "target/*jar"
 
     vcs {
-        root(Trip)g
+        root(Test)
     }
     steps {
         maven {
@@ -26,7 +26,7 @@ object Build : BuildType({
     }
 })
 
-object Trip : GitVcsRoot({
-    name = "Trip"
+object Test : GitVcsRoot({
+    name = "Test"
     url = "https://github.com/Artemkulish/Demo_4"
 })
