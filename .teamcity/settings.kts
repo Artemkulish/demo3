@@ -26,7 +26,6 @@ object Trip : BuildType({
     }
 
     triggers {
-        vcs {
         }
     }
 })
@@ -47,7 +46,6 @@ object Gateway : BuildType({
     }
 
     triggers {
-        vcs {
         }
     }
 })
