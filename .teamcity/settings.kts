@@ -34,7 +34,7 @@ object Trip : BuildType({
 object Gateway : BuildType({
     name = "Gateway"
 
-    vcs {g
+    vcs {
         root(DslContext.settingsRoot)
     }
 
