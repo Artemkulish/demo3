@@ -5,27 +5,30 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 version = "2019.2"
 
 project {
-
+    vcsRoot(Trip)
     buildType(Build)
 }
 
 object Build : BuildType({
     name = "Build"
+    artifactRules = "target/*jar"
 
     vcs {
-        root(Demo4Vcs)
+        root(Trip)
     }
-
     steps {
         maven {
             goals = "clean package"
-            runnerArgs = "-Dmaven.test.failure.ignore=true"
-            mavenVersion = defaultProvidedVersion()
+        }
+    }
+    triggers {
+        vcs {
+            groupCheckinsByCommitter = true
         }
     }
 })
 
-object Demo4Vcs : GitVcsRoot({
-    name = "Demo4Vcs"
-    url = "https://github.com/Artemkulish/Demo_4"
+object Trip : GitVcsRoot({
+    name = "Trip"
+    url = "https://github.com/Artemkulish/Demo_4/tree/master/trip"
 })
