@@ -1,6 +1,4 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
-import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
-
 
 version = "2019.2"
 
@@ -10,11 +8,11 @@ project {
 }
 
 object Build : BuildType({
-    name = "Build"
+    name = "Test"
     artifactRules = "target/*jar"
 
     vcs {
-        root(Trip)
+        root(Trip)g
     }
     steps {
         maven {
