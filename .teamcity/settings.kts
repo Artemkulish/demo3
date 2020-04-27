@@ -40,7 +40,7 @@ object Trip : BuildType({
 
     steps {
         maven {
-            goals = "clean test"
+            goals = "clean package"
             pomLocation = "trip/pom.xml"
             runnerArgs = "-Dmaven.test.failure.ignore=true"
         }
